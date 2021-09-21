@@ -4,10 +4,7 @@ import com.unipi.movierecommenderspringboot.model.Movie;
 import com.unipi.movierecommenderspringboot.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,15 @@ public class MovieController {
         return !movies.isEmpty() ? new ResponseEntity<>(movies, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Movie>> getMovieByName(@RequestParam String name) {
+        List<Movie> movies = movieService.getMovieByName(name);
+        return !movies.isEmpty() ? new ResponseEntity<>(movies, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
 
     @GetMapping("/random/{num}")
     public ResponseEntity<List<Movie>> getRandomMovies(@PathVariable int num) {

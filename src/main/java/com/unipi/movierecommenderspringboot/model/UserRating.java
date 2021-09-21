@@ -1,6 +1,7 @@
 package com.unipi.movierecommenderspringboot.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserRating {
 
@@ -26,5 +27,14 @@ public class UserRating {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public boolean compare(Rating otherRating) {
+        boolean equals = false;
+        for (Rating rating : ratings) {
+            if (rating.compareToOtherRating(otherRating))
+                equals = true;
+        }
+        return equals;
     }
 }

@@ -15,7 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Service
 public class RatingService {
@@ -242,9 +244,11 @@ public class RatingService {
                     double weightedRating = Math.round(
                             (accumulatedRating.get(movie) / accumulatedCount.get(movie)) * 100.0) / 100.0;
                     Rating rating = new Rating(movie, weightedRating);
+
                     weightedRatings.add(rating);
                 }
         );
+
         weightedRatings.sort(Collections.reverseOrder());
         return weightedRatings;
     }

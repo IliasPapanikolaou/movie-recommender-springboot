@@ -32,4 +32,7 @@ public class Rating implements Comparable<Rating> {
         return 0;
     }
 
+    public boolean compareToOtherRating(Rating rating) {
+        return this.getItem().equals(rating.getItem());
+    }
 }

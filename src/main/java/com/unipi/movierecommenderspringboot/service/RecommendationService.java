@@ -48,9 +48,11 @@ public class RecommendationService {
 
         if (similarRatings.size() != 0) {
             similarRatings.forEach( rating -> {
-                Movie movie = MovieDatabase.getMovie(rating.getItem());
-                recommendations.add(
-                        new Recommendation(movie, rating.getValue()));
+                // Exclude movies already rated for showing up
+                if(!userRating.compare(rating)) {
+                    Movie movie = MovieDatabase.getMovie(rating.getItem());
+                    recommendations.add(new Recommendation(movie, rating.getValue()));
+                }
             });
         }
         return recommendations;
