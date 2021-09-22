@@ -7,6 +7,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class RaterDatabase {
     private static HashMap<String, Rater> ourRaters;
@@ -56,9 +57,9 @@ public class RaterDatabase {
         return ourRaters.get(id);
     }
 
-    public static ArrayList<Rater> getRaters() {
+    public static List<Rater> getRaters() {
         initialize();
-        ArrayList<Rater> list = new ArrayList<Rater>(ourRaters.values());
+        List<Rater> list = new ArrayList<Rater>(ourRaters.values());
 
         return list;
     }

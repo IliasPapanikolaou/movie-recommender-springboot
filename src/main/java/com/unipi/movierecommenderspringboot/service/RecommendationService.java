@@ -11,8 +11,8 @@ import java.util.List;
 @Service
 public class RecommendationService {
 
-    private final int MINIMAL_RATERS = 3;
-    private final int NUM_OF_SIMILAR_RATERS = 10;
+    public static final int MINIMAL_RATERS = 3;
+    public static final int NUM_OF_SIMILAR_RATERS = 10;
 
     RatingService ratingService;
     List<Movie> movies;

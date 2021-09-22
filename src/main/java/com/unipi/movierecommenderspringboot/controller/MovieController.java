@@ -1,6 +1,7 @@
 package com.unipi.movierecommenderspringboot.controller;
 
 import com.unipi.movierecommenderspringboot.model.Movie;
+import com.unipi.movierecommenderspringboot.model.MovieRating;
 import com.unipi.movierecommenderspringboot.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,22 @@ public class MovieController {
     public ResponseEntity<List<Movie>> getMovieByName(@RequestParam String name) {
         List<Movie> movies = movieService.getMovieByName(name);
         return !movies.isEmpty() ? new ResponseEntity<>(movies, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/average")
+    public ResponseEntity<List<MovieRating>> getAllMoviesAndAverageRatings() {
+        List<MovieRating> movieAverageRatings = movieService.getAllMoviesAndAverageRatings();
+        return !movieAverageRatings.isEmpty()
+                ? new ResponseEntity<>(movieAverageRatings, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/average/{id}")
+    public ResponseEntity<MovieRating> getMovieRatingById(@PathVariable String id) {
+        MovieRating movieRating =  movieService.getMovieRatingById(id);
+        return movieRating != null
+                ? new ResponseEntity<>(movieRating, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
