@@ -19,6 +19,7 @@ public class RecommendationController {
         this.recommendationService = recommendationService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<List<Recommendation>> getRecommendationsById(@PathVariable("id") String id) {
         List<Recommendation> recommendations = recommendationService.getRecommendationsById(id);
@@ -26,6 +27,7 @@ public class RecommendationController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<List<Recommendation>> getRecommendationsByUserRating(@RequestBody UserRating userRating) {
         List<Recommendation> recommendations = recommendationService.getRecommendationsByUserRating(userRating);

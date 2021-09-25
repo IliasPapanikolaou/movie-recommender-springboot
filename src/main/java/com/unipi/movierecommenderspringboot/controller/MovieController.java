@@ -19,6 +19,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = movieService.getAllMovies();
@@ -26,6 +27,7 @@ public class MovieController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/search")
     public ResponseEntity<List<Movie>> getMovieByName(@RequestParam String name) {
         List<Movie> movies = movieService.getMovieByName(name);
@@ -33,6 +35,7 @@ public class MovieController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/average")
     public ResponseEntity<List<MovieRating>> getAllMoviesAndAverageRatings() {
         List<MovieRating> movieAverageRatings = movieService.getAllMoviesAndAverageRatings();
@@ -41,6 +44,7 @@ public class MovieController {
                 : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/average/{id}")
     public ResponseEntity<MovieRating> getMovieRatingById(@PathVariable String id) {
         MovieRating movieRating =  movieService.getMovieRatingById(id);
@@ -50,7 +54,7 @@ public class MovieController {
     }
 
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/random/{num}")
     public ResponseEntity<List<Movie>> getRandomMovies(@PathVariable int num) {
         List<Movie> movies = movieService.getRandomMovies(num);
