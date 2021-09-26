@@ -88,7 +88,7 @@ public class RatingService {
     }
 
     // Translate a rating from the scale 0 to 10 to the scale -5 to 5
-    // and return the dot product of the ratings of movies that they both rated
+    // and return the dot product of the ratings of movies that they are both rated
     private double dotProduct(Rater me, Rater r) {
         AtomicReference<Double> dotProduct = new AtomicReference<>(0.0);
         List<String> itemsRatedByMe = me.getItemsRated();

@@ -45,6 +45,15 @@ public class MovieController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/top/{num}")
+    public ResponseEntity<List<MovieRating>> getMoviesByAverageRatings(@PathVariable int num) {
+        List<MovieRating> movieAverageRatings = movieService.getMoviesByAverageRatings(num);
+        return !movieAverageRatings.isEmpty()
+                ? new ResponseEntity<>(movieAverageRatings, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/average/{id}")
     public ResponseEntity<MovieRating> getMovieRatingById(@PathVariable String id) {
         MovieRating movieRating =  movieService.getMovieRatingById(id);

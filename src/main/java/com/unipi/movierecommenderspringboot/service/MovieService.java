@@ -66,6 +66,15 @@ public class MovieService {
         return movieRatings;
     }
 
+    public List<MovieRating> getMoviesByAverageRatings(int num) {
+        List<MovieRating> movieRatings = getAllMoviesAndAverageRatings();
+        List<MovieRating> movieRatingsTop = new ArrayList<>();
+        IntStream.range(0, num).forEach( movieRating ->
+                movieRatingsTop.add(movieRatings.get(movieRating))
+        );
+        return movieRatingsTop;
+    }
+
     // Average movie rating by ID
     // movieId: id, number of raters: minimalRaters
     private double getAverageByID(String id) {

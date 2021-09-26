@@ -1,14 +1,16 @@
 package com.unipi.movierecommenderspringboot;
 
+import com.unipi.movierecommenderspringboot.model.Rater;
 import com.unipi.movierecommenderspringboot.model.Rating;
 import com.unipi.movierecommenderspringboot.repository.MovieDatabase;
+import com.unipi.movierecommenderspringboot.repository.RaterDatabase;
 import com.unipi.movierecommenderspringboot.service.RatingService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RatingsServiceTesting {
 
@@ -63,5 +65,14 @@ public class RatingsServiceTesting {
 //        );
 
         assertEquals(115, similarRatings.size());
+    }
+
+    @Test
+    public void userMovieRatingAlreadyExist() {
+        String raterId = "1";
+        String movieId = "0068646";
+        int rating = 7;
+        Boolean userRatingDoesNotExist = RaterDatabase.saveRatingToCsv(RATINGS_SOURCE, raterId, movieId, rating);
+        assertEquals(false, userRatingDoesNotExist);
     }
 }
